@@ -1,43 +1,96 @@
 import React from 'react';
-import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, ChevronRight } from 'lucide-react';
+import './Footer.css';
 
 const Footer = () => {
     return (
-        <footer style={{ backgroundColor: '#0f172a', color: 'white', padding: '4rem 0 2rem' }}>
+        <footer className="footer">
             <div className="container">
-                <div className="grid grid-3" style={{ marginBottom: '3rem' }}>
-
-                    <div>
-                        <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>Brovanta</h2>
-                        <p style={{ color: '#94a3b8', lineHeight: 1.6, maxWidth: '300px' }}>
-                            Empowering businesses with innovative digital solutions. Building the future, together.
+                <div className="footer-grid">
+                    {/* Brand Section */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="footer-brand"
+                    >
+                        <h2>Brovanta</h2>
+                        <p>
+                            Empowering businesses with innovative digital solutions. Building the future of technology one project at a time.
                         </p>
-                    </div>
-
-                    <div>
-                        <h3 style={{ fontSize: '1.1rem', fontWeight: 'bold', marginBottom: '1rem' }}>Quick Links</h3>
-                        <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', color: '#94a3b8' }}>
-                            <li><a href="#home" className="hover:text-white transition-colors">Home</a></li>
-                            <li><a href="#services" className="hover:text-white transition-colors">Services</a></li>
-                            <li><a href="#work" className="hover:text-white transition-colors">Work</a></li>
-                            <li><a href="#about" className="hover:text-white transition-colors">About Us</a></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3 style={{ fontSize: '1.1rem', fontWeight: 'bold', marginBottom: '1rem' }}>Follow Us</h3>
-                        <div style={{ display: 'flex', gap: '1rem' }}>
-                            <a href="#" style={{ padding: '0.5rem', background: 'rgba(255,255,255,0.1)', borderRadius: '50%' }}><Facebook size={20} /></a>
-                            <a href="#" style={{ padding: '0.5rem', background: 'rgba(255,255,255,0.1)', borderRadius: '50%' }}><Twitter size={20} /></a>
-                            <a href="#" style={{ padding: '0.5rem', background: 'rgba(255,255,255,0.1)', borderRadius: '50%' }}><Linkedin size={20} /></a>
-                            <a href="#" style={{ padding: '0.5rem', background: 'rgba(255,255,255,0.1)', borderRadius: '50%' }}><Instagram size={20} /></a>
+                        <div className="footer-socials">
+                            <a href="#" className="social-link"><Facebook size={20} /></a>
+                            <a href="#" className="social-link"><Twitter size={20} /></a>
+                            <a href="#" className="social-link"><Linkedin size={20} /></a>
+                            <a href="#" className="social-link"><Instagram size={20} /></a>
                         </div>
-                    </div>
+                    </motion.div>
 
+                    {/* Quick Links */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                        className="footer-column"
+                    >
+                        <h3>Quick Links</h3>
+                        <ul className="footer-links">
+                            <li><a href="#home"><ChevronRight size={16} /> Home</a></li>
+                            <li><a href="#services"><ChevronRight size={16} /> Services</a></li>
+                            <li><a href="#work"><ChevronRight size={16} /> Portfolio</a></li>
+                            <li><a href="#about"><ChevronRight size={16} /> About Us</a></li>
+                        </ul>
+                    </motion.div>
+
+                    {/* Services */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                        className="footer-column"
+                    >
+                        <h3>Services</h3>
+                        <ul className="footer-links">
+                            <li><a href="#services"><ChevronRight size={16} /> Web Development</a></li>
+                            <li><a href="#services"><ChevronRight size={16} /> App Solutions</a></li>
+                            <li><a href="#services"><ChevronRight size={16} /> UI/UX Design</a></li>
+                            <li><a href="#services"><ChevronRight size={16} /> Cloud Services</a></li>
+                        </ul>
+                    </motion.div>
+
+                    {/* Contact Info */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.3 }}
+                        className="footer-column"
+                    >
+                        <h3>Contact Info</h3>
+                        <div className="footer-contact-item">
+                            <MapPin size={20} className="contact-icon" />
+                            <span>New Delhi, India</span>
+                        </div>
+                        <div className="footer-contact-item">
+                            <Mail size={20} className="contact-icon" />
+                            <span>contact@brovanta.com</span>
+                        </div>
+                        <div className="footer-contact-item">
+                            <Phone size={20} className="contact-icon" />
+                            <span>+91 98765 43210</span>
+                        </div>
+                    </motion.div>
                 </div>
 
-                <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2rem', textAlign: 'center', color: '#64748b' }}>
-                    &copy; {new Date().getFullYear()} Brovanta (OPC) Private Limited. All rights reserved.
+                <div className="footer-bottom">
+                    <p>&copy; {new Date().getFullYear()} Brovanta (OPC) Private Limited. All rights reserved.</p>
+                    <div className="footer-legal">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </div>
                 </div>
             </div>
         </footer>
@@ -45,3 +98,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

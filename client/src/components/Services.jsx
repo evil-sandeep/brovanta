@@ -1,95 +1,119 @@
 import React from 'react';
-import { Newspaper, ShoppingBag, Video, PlayCircle, Code } from 'lucide-react';
+import { Newspaper, ShoppingBag, Video, PlayCircle, Code, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import './Services.css';
 
 const services = [
     {
         title: "Zoom Chronicle",
         desc: "A live and growing media web portal delivering fresh stories, trends, and digital content — your lens into modern culture.",
-        icon: <Newspaper size={32} color="white" />
+        icon: <Newspaper size={32} color="white" />,
+        isNew: false
     },
     {
         title: "Brovanta Style",
-        desc: "Coming soon — our e-commerce platform launching by end of 2025, offering a curated selection of fashion and lifestyle products to elevate your shopping experience.",
-        icon: <ShoppingBag size={32} color="white" />
+        desc: "Coming soon — our e-commerce platform launching by end of 2025, offering a curated selection of fashion and lifestyle products.",
+        icon: <ShoppingBag size={32} color="white" />,
+        isSoon: true
     },
     {
         title: "Zoomax Studio",
         desc: "Our in-house production studio for events, brand shoots, and creative media. Where imagination meets high-quality execution.",
-        icon: <Video size={32} color="white" />
+        icon: <Video size={32} color="white" />,
+        isNew: false
     },
     {
-        title: "OTT Live Streaming App",
-        desc: "Launching soon — our upcoming OTT platform will bring entertainment and live content right to your screen. Stay tuned for the future of streaming.",
-        icon: <PlayCircle size={32} color="white" />
+        title: "OTT Streaming",
+        desc: "Launching soon — our upcoming OTT platform will bring entertainment and live content right to your screen.",
+        icon: <PlayCircle size={32} color="white" />,
+        isSoon: true
     },
     {
-        title: "Software & IT Solutions",
+        title: "Software & IT",
         desc: "We design and develop custom web, app, and IT solutions that help businesses grow and innovate in the digital age.",
-        icon: <Code size={32} color="white" />
+        icon: <Code size={32} color="white" />,
+        isNew: false
     },
 ];
 
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.2
+        }
+    }
+};
+
+const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: "easeOut" }
+    }
+};
+
 const Services = () => {
     return (
-        <section id="services" className="section" style={{ backgroundColor: 'var(--bg-soft)' }}>
+        <section id="services" className="services-section">
             <div className="container">
-                <span className="section-subtitle">What We Do</span>
-                <h2 className="section-title">Our Services & Ventures</h2>
+                <div className="services-header">
+                    <motion.span
+                        className="section-subtitle"
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        Our Expertise
+                    </motion.span>
+                    <motion.h2
+                        className="section-title"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                    >
+                        Services & Strategic Ventures
+                    </motion.h2>
+                </div>
 
-                <div className="grid grid-3" style={{ marginTop: '3rem' }}>
+                <motion.div
+                    className="services-grid"
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                >
                     {services.map((service, index) => (
                         <motion.div
                             key={index}
-                            whileHover={{ y: -10 }}
                             className="service-card"
-                            style={{
-                                backgroundColor: 'white',
-                                padding: '2rem',
-                                borderRadius: 'var(--radius)',
-                                boxShadow: 'var(--shadow-sm)',
-                                transition: 'all 0.3s ease',
-                                border: '1px solid var(--border-light)',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'center', // Center align content
-                                textAlign: 'center'
-                            }}
+                            variants={cardVariants}
                         >
-                            <div style={{
-                                marginBottom: '1.5rem',
-                                background: 'var(--primary)',
-                                width: '72px',
-                                height: '72px',
-                                borderRadius: '50%', // Circle shape as per image
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                boxShadow: '0 4px 10px rgba(0, 102, 255, 0.3)'
-                            }}>
+                            {service.isSoon && <span className="badge-soon">Coming Soon</span>}
+
+                            <div className="service-icon-wrapper">
                                 {service.icon}
                             </div>
 
-                            <h3 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '1rem' }}>{service.title}</h3>
+                            <h3 className="service-title">{service.title}</h3>
 
-                            <p style={{
-                                color: 'var(--text-muted)',
-                                marginBottom: '2rem', // Space for button
-                                lineHeight: '1.6',
-                                flexGrow: 1
-                            }}>
+                            <p className="service-description">
                                 {service.desc}
                             </p>
 
-                            <button className="btn btn-primary" style={{ width: '100%', maxWidth: '200px' }}>
-                                Learn More
+                            <button className="service-btn">
+                                Explore <ArrowRight size={16} style={{ marginLeft: '4px', verticalAlign: 'middle' }} />
                             </button>
                         </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );
 };
 
 export default Services;
+

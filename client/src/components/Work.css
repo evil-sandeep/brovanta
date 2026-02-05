@@ -1,0 +1,120 @@
+.work-section {
+    padding: 8rem 0;
+    background: var(--bg-soft);
+}
+
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    margin-top: 4rem;
+}
+
+.work-card {
+    position: relative;
+    border-radius: 32px;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+    cursor: pointer;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+.work-img-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.work-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.work-card:hover .work-img {
+    transform: scale(1.1);
+}
+
+.work-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0) 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 3rem;
+}
+
+.work-card:hover .work-overlay {
+    opacity: 1;
+}
+
+.work-category {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+    transform: translateY(20px);
+    transition: transform 0.4s ease 0.1s;
+}
+
+.work-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1.5rem;
+    transform: translateY(20px);
+    transition: transform 0.4s ease 0.2s;
+}
+
+.work-card:hover .work-category,
+.work-card:hover .work-title {
+    transform: translateY(0);
+}
+
+.work-view-btn {
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.4s ease;
+}
+
+.work-card:hover .work-view-btn {
+    opacity: 1;
+    transform: scale(1);
+}
+
+@media (max-width: 768px) {
+    .work-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .work-overlay {
+        opacity: 1;
+        padding: 2rem;
+    }
+
+    .work-category,
+    .work-title {
+        transform: translateY(0);
+    }
+
+    .work-title {
+        font-size: 1.5rem;
+    }
+}

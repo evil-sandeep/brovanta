@@ -1,0 +1,144 @@
+.about-section {
+    padding: 8rem 0;
+    background: #ffffff;
+    position: relative;
+}
+
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+}
+
+.about-visual {
+    position: relative;
+    padding: 2rem;
+}
+
+.about-image-wrapper {
+    position: relative;
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.1);
+}
+
+.about-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.about-visual:hover .about-img {
+    transform: scale(1.05);
+}
+
+.experience-card {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--primary);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0, 102, 255, 0.3);
+    z-index: 2;
+    text-align: center;
+    border: 8px solid white;
+}
+
+.experience-card .num {
+    font-size: 3.5rem;
+    font-weight: 800;
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.experience-card .text {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.9;
+}
+
+.about-content {
+    max-width: 550px;
+}
+
+.about-list {
+    margin: 2.5rem 0 3.5rem;
+}
+
+.about-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.about-item-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 102, 255, 0.1);
+    color: var(--primary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.about-item-text h4 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.25rem;
+}
+
+.about-item-text p {
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+@media (max-width: 1024px) {
+    .about-container {
+        gap: 3rem;
+    }
+
+    .about-content h2 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        grid-template-columns: 1fr;
+    }
+
+    .about-visual {
+        order: 2;
+        padding: 1rem;
+    }
+
+    .about-content {
+        text-align: center;
+    }
+
+    .about-item-text {
+        text-align: left;
+    }
+
+    .experience-card {
+        padding: 1.5rem;
+        bottom: -1rem;
+        right: -1rem;
+    }
+
+    .experience-card .num {
+        font-size: 2.5rem;
+    }
+}

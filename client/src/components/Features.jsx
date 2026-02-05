@@ -1,38 +1,54 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Zap, Users, Award } from 'lucide-react';
+import './Features.css';
 
 const features = [
-    { icon: <Zap size={40} />, title: "Agile Methodology", desc: "We adapt quickly to changes and deliver innovative solutions with speed and precision." },
-    { icon: <Users size={40} />, title: "Expert Team", desc: "A diverse team of seasoned professionals dedicated to your success." },
-    { icon: <Award size={40} />, title: "Quality Guaranteed", desc: "We adhere to the highest standards of quality and performance in every project." },
+    { icon: <Zap size={32} />, title: "Agile Methodology", desc: "We adapt quickly to changes and deliver innovative solutions with speed and precision." },
+    { icon: <Users size={32} />, title: "Expert Team", desc: "A diverse team of seasoned professionals dedicated to your success." },
+    { icon: <Award size={32} />, title: "Quality Guaranteed", desc: "We adhere to the highest standards of quality and performance in every project." },
 ];
 
 const Features = () => {
     return (
-        <section className="section">
-            <div className="container text-center">
-                <span className="section-subtitle">Why Choose Us</span>
-                <h2 className="section-title">The Brovanta Advantage</h2>
+        <section className="features-section">
+            <div className="container">
+                <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                    <motion.span
+                        className="section-subtitle"
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        Why Choose Us
+                    </motion.span>
+                    <motion.h2
+                        className="section-title"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                    >
+                        The Brovanta Advantage
+                    </motion.h2>
+                </div>
 
-                <div className="grid grid-3" style={{ marginTop: '3rem' }}>
+                <div className="grid grid-3">
                     {features.map((feature, index) => (
-                        <div key={index} style={{ padding: '2rem', textAlign: 'center' }}>
-                            <div style={{
-                                margin: '0 auto 1.5rem',
-                                background: '#eff6ff',
-                                color: 'var(--primary)',
-                                width: '80px',
-                                height: '80px',
-                                borderRadius: '50%',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}>
+                        <motion.div
+                            key={index}
+                            className="feature-card"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.1 + 0.2 }}
+                        >
+                            <div className="feature-icon-box">
                                 {feature.icon}
                             </div>
-                            <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem' }}>{feature.title}</h3>
-                            <p style={{ color: 'var(--text-muted)' }}>{feature.desc}</p>
-                        </div>
+                            <h3 className="feature-title">{feature.title}</h3>
+                            <p className="feature-desc">{feature.desc}</p>
+                        </motion.div>
                     ))}
                 </div>
             </div>
@@ -41,3 +57,4 @@ const Features = () => {
 };
 
 export default Features;
+
