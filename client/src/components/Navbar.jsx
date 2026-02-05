@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import './Navbar.css';
 
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -19,78 +20,115 @@ const Navbar = () => {
         { name: 'Services', href: '#services' },
         { name: 'Work', href: '#work' },
         { name: 'About', href: '#about' },
-        { name: 'Contact', href: '#contact' },
     ];
 
+    const menuVariants = {
+        hidden: { opacity: 0, y: -20 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+        },
+        exit: {
+            opacity: 0,
+            y: -20,
+            transition: { staggerChildren: 0.05, staggerDirection: -1 }
+        }
+    };
+
+    const linkVariants = {
+        hidden: { opacity: 0, y: -10 },
+        visible: { opacity: 1, y: 0 }
+    };
+
     return (
-        <header
-            className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'
-                }`}
-        >
-            <div className="container flex justify-between items-center" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <a href="#" className="text-2xl font-bold text-primary" style={{ color: 'var(--primary)', fontSize: '1.5rem', fontWeight: 'bold' }}>
-                    Brovanta
-                </a>
+        <header className={`navbar-header ${scrolled ? 'scrolled' : ''}`}>
+            <div className="navbar-container">
+                <motion.a
+                    href="#"
+                    className="logo"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    whileHover={{ scale: 1.05 }}
+                >
+                    Brovanta<span className="logo-dot"></span>
+                </motion.a>
 
                 {/* Desktop Menu */}
-                <nav className="hidden md:flex gap-8" style={{ display: 'none', gap: '2rem' }}>
-                    {navLinks.map((link) => (
-                        <a
+                <nav className="nav-links">
+                    {navLinks.map((link, index) => (
+                        <motion.a
                             key={link.name}
                             href={link.href}
-                            className="text-sm font-medium hover:text-primary transition-colors"
-                            style={{ fontSize: '0.95rem', fontWeight: 500 }}
+                            className="nav-link"
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.1 }}
                         >
                             {link.name}
-                        </a>
+                        </motion.a>
                     ))}
                 </nav>
 
-                {/* Mobile Menu Button */}
-                <button
-                    className="md:hidden"
-                    onClick={() => setIsOpen(!isOpen)}
-                    style={{}} // handled by css class mostly, but adding explicit display check logic in CSS
-                >
-                    {isOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+                <div className="nav-actions">
+                    <motion.a
+                        href="#contact"
+                        className="btn-contact"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        Contact Us
+                    </motion.a>
+
+                    {/* Mobile Menu Button */}
+                    <button
+                        className="mobile-menu-btn"
+                        onClick={() => setIsOpen(!isOpen)}
+                        aria-label="Toggle Menu"
+                    >
+                        {isOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
+                </div>
             </div>
 
             {/* Mobile Menu Overlay */}
-            {isOpen && (
-                <div
-                    className="absolute top-full left-0 w-full bg-white shadow-lg py-4 md:hidden"
-                    style={{ position: 'absolute', top: '100%', left: 0, width: '100%', backgroundColor: 'white', padding: '1rem', boxShadow: 'var(--shadow-lg)' }}
-                >
-                    <div className="container flex flex-col gap-4">
-                        {navLinks.map((link) => (
-                            <a
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        className="mobile-overlay"
+                        variants={menuVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                    >
+                        <button
+                            className="absolute top-8 right-8 p-2"
+                            onClick={() => setIsOpen(false)}
+                            style={{ position: 'absolute', top: '2rem', right: '2rem' }}
+                        >
+                            <X size={32} />
+                        </button>
+
+                        {navLinks.concat({ name: 'Contact', href: '#contact' }).map((link) => (
+                            <motion.a
                                 key={link.name}
                                 href={link.href}
-                                className="block py-2 text-center font-medium hover:text-primary"
+                                className="mobile-nav-link"
+                                variants={linkVariants}
                                 onClick={() => setIsOpen(false)}
-                                style={{ display: 'block', padding: '0.5rem', textAlign: 'center' }}
+                                whileHover={{ scale: 1.1, color: 'var(--primary)' }}
                             >
                                 {link.name}
-                            </a>
+                            </motion.a>
                         ))}
-                    </div>
-                </div>
-            )}
-
-            {/* Inline Styles for Responsive Logic (Since we are using Vanilla CSS but component specific logic here for clarity or we usually need media queries in CSS) */}
-            <style>{`
-                @media (min-width: 769px) {
-                    nav.hidden { display: flex !important; }
-                    button.md\\:hidden { display: none; }
-                }
-                @media (max-width: 768px) {
-                    nav.hidden { display: none !important; }
-                    button.md\\:hidden { display: block; }
-                }
-            `}</style>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </header>
     );
 };
 
 export default Navbar;
+
