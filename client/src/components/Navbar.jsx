@@ -51,7 +51,7 @@ const Navbar = () => {
                     animate={{ opacity: 1, x: 0 }}
                     whileHover={{ scale: 1.05 }}
                 >
-                    BROVANTA INDUSTRY PRIVATE LIMITED<span className="logo-dot"></span>
+                    BROVANTA INDUSTRY <span className="logo-dot"></span>
                 </motion.a>
 
                 {/* Desktop Menu */}
