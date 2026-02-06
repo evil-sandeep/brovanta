@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import Services from './components/Services';
 import About from './components/About';
 import Work from './components/Work';
+import Director from './components/Director';
 import Features from './components/Features';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -21,6 +22,7 @@ function HomePage() {
       <About />
       {/* <Ventures /> */}
       <Work />
+      <Director />
       <ClientStats />
       <Features />
       <Contact />
