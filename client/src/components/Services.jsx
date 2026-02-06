@@ -132,7 +132,7 @@ const Services = () => {
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
                     >
-                        Services & Strategic Ventures
+                        Brovanta Industries Ventures's
                     </motion.h2>
                 </div>
 

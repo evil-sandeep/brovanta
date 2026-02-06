@@ -1,9 +1,11 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Check, ShieldCheck, Zap, Heart } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Check, ShieldCheck, Zap, Heart, X } from 'lucide-react';
 import './About.css';
 
 const About = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     const features = [
         { title: "Innovative Design", desc: "Crafting unique digital experiences.", icon: <Zap size={20} /> },
         { title: "Secure Systems", desc: "Data protection and reliability first.", icon: <ShieldCheck size={20} /> },
@@ -36,7 +38,7 @@ const About = () => {
                         transition={{ delay: 0.4, duration: 0.6 }}
                         className="experience-card"
                     >
-                        <span className="num">5+</span>
+                        <span className="num">3+</span>
                         <span className="text">Years of <br /> Excellence</span>
                     </motion.div>
                 </motion.div>
@@ -68,7 +70,9 @@ const About = () => {
                         transition={{ delay: 0.2 }}
                         style={{ color: '#64748b', fontSize: '1.1rem', lineHeight: '1.8' }}
                     >
-                        At Brovanta, we believe in the power of technology to solve complex business challenges. Our team is composed of industry experts who are passionate about delivering excellence and building long-term partnerships.
+                        At Brovanta Industry, we harness the power of technology to solve complex business challenges and drive meaningful growth. Our team of experienced professionals is passionate about delivering excellence, innovation, and reliable results.
+
+                        From software development to media, broadcasting, and event production, Brovanta Industry offers end-to-end solutions under one ecosystem. We focus on building long-term partnerships by combining creativity, technology, and execution to turn ideas into impactful digital realities.
                     </motion.p>
 
                     <div className="about-list">
@@ -100,11 +104,57 @@ const About = () => {
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.6 }}
+                        onClick={() => setIsModalOpen(true)}
                     >
                         Learn More About Us
                     </motion.button>
                 </div>
             </div>
+
+            {/* Modal */}
+            <AnimatePresence>
+                {isModalOpen && (
+                    <motion.div
+                        className="about-modal-overlay"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setIsModalOpen(false)}
+                    >
+                        <motion.div
+                            className="about-modal-card"
+                            initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <button className="modal-close-btn" onClick={() => setIsModalOpen(false)}>
+                                <X size={24} />
+                            </button>
+
+                            <div className="modal-content">
+                                <h3 className="modal-title">About Brovanta Industry</h3>
+
+                                <p>
+                                    Brovanta Industry began as an MSME-registered enterprise with a focused vision to deliver value through technology-driven solutions. As the organization matured, it transitioned into Brovanta (OPC) Private Limited, strengthening its corporate structure and operational capabilities. Today, the company operates as Brovanta Industry Private Limited, reflecting its evolution into a scalable, partnership-led organization.
+                                </p>
+
+                                <p>
+                                    This growth has been enabled by the continued trust of clients and stakeholders, along with the consistent performance and commitment of the Brovanta Industry team. Their collective expertise, discipline, and execution excellence have been instrumental in achieving the company’s current position.
+                                </p>
+
+                                <p>
+                                    Brovanta Industry delivers end-to-end solutions across software development, media, broadcasting, and event production, operating as an integrated ecosystem. By combining technology, creativity, and strategic execution, the company supports organizations in addressing complex business challenges and achieving sustainable growth.
+                                </p>
+
+                                <p>
+                                    With an expanding global footprint, Brovanta Industry now maintains a digital and operational presence in South Korea, Dubai–Sharjah, Austria, Sri Lanka, South Africa (Cape Town), and Canada (Toronto). This international expansion positions the company as an emerging multinational enterprise, committed to long-term partnerships, innovation, and global excellence.
+                                </p>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
     );
 };
