@@ -72,7 +72,7 @@ const Footer = () => {
                         <h3>Contact Info</h3>
                         <div className="footer-contact-item">
                             <MapPin size={20} className="contact-icon" />
-                            <span>New Delhi, India</span>
+                            <span>city,state</span>
                         </div>
                         <div className="footer-contact-item">
                             <Mail size={20} className="contact-icon" />
@@ -80,13 +80,13 @@ const Footer = () => {
                         </div>
                         <div className="footer-contact-item">
                             <Phone size={20} className="contact-icon" />
-                            <span>+91 98765 43210</span>
+                            <span>+91 1111111111</span>
                         </div>
                     </motion.div>
                 </div>
 
                 <div className="footer-bottom">
-                    <p>&copy; {new Date().getFullYear()} Brovanta (OPC) Private Limited. All rights reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} Brovanta Private Limited. All rights reserved.</p>
                     <div className="footer-legal">
                         <a href="#">Privacy Policy</a>
                         <a href="#">Terms of Service</a>

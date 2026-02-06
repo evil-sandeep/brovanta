@@ -1,2 +1,2 @@
 User-agent: *
-Disallow: /SANDEEP2274
+Disallow: /update-xyz-123
