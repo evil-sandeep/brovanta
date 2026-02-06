@@ -19,7 +19,7 @@ function HomePage() {
       <Hero />
       <Services />
       <About />
-      <Ventures />
+      {/* <Ventures /> */}
       <Work />
       <ClientStats />
       <Features />
