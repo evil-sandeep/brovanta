@@ -4,9 +4,9 @@ import { Zap, Users, Award } from 'lucide-react';
 import './Features.css';
 
 const features = [
-    { icon: <Zap size={32} />, title: "Agile Methodology", desc: "We adapt quickly to changes and deliver innovative solutions with speed and precision." },
-    { icon: <Users size={32} />, title: "Expert Team", desc: "A diverse team of seasoned professionals dedicated to your success." },
-    { icon: <Award size={32} />, title: "Quality Guaranteed", desc: "We adhere to the highest standards of quality and performance in every project." },
+    { icon: <Zap size={32} />, title: "Agile Methodology", desc: "We embrace agile practices to respond swiftly to change, ensuring efficient execution and the delivery of innovative, high-impact solutions." },
+    { icon: <Users size={32} />, title: "Expert Team", desc: "Our team comprises experienced, multidisciplinary professionals committed to delivering excellence and driving client success." },
+    { icon: <Award size={32} />, title: "Quality Guaranteed", desc: "We maintain rigorous quality and performance standards across every project, ensuring reliability, consistency, and measurable results." },
 ];
 
 const Features = () => {
@@ -29,7 +29,7 @@ const Features = () => {
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
                     >
-                        The Brovanta Advantage
+                        Brovanta Industry Advantage
                     </motion.h2>
                 </div>
 
